@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>EyeGuard — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<style>
+/* ══════════════════════════════════════════════
+   NEUMORPHISM TOKEN SYSTEM
+   Base: #E8ECF0  Shadow light: #fff  Shadow dark: #c8ccd0
+   ══════════════════════════════════════════════ */
+:root {
+  --bg:        #e8ecf0;
+  --bg-deep:   #dde1e7;
+  --text:      #4a5568;
+  --text-soft: #8896a8;
+  --text-dark: #2d3748;
+
+  /* Neumorphic shadows */
+  --sh-out:    6px 6px 14px #c8ccd0, -6px -6px 14px #ffffff;
+  --sh-out-sm: 3px 3px 8px #c8ccd0,  -3px -3px 8px #ffffff;
+  --sh-in:     inset 4px 4px 10px #c8ccd0, inset -4px -4px 10px #ffffff;
+  --sh-in-sm:  inset 2px 2px 6px #c8ccd0,  inset -2px -2px 6px #ffffff;
+  --sh-press:  inset 3px 3px 8px #b8bcc4,  inset -1px -1px 4px #ffffff;
+
+  /* Accents */
+  --teal:      #38bfa1;
+  --teal-soft: rgba(56,191,161,.15);
+  --blue:      #6b9ff0;
+  --blue-soft: rgba(107,159,240,.15);
+  --orange:    #f0a060;
+  --orange-soft: rgba(240,160,96,.15);
+  --red:       #e07070;
+  --red-soft:  rgba(224,112,112,.15);
+  --purple:    #9b85e0;
+
+  --radius:    16px;
+  --radius-sm: 10px;
+  --radius-pill: 50px;
+
+  --font:  'DM Sans', sans-serif;
+  --mono:  'DM Mono', monospace;
+
+  --transition: .25s cubic-bezier(.4,0,.2,1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ──────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #c8ccd0; border-radius: 2px; }
+
+/* ══════════════════════════════════════════════
+   LAYOUT
+   ══════════════════════════════════════════════ */
+.app {
+  display: grid;
+  grid-template-rows: 64px 1fr;
+  height: 100vh;
+}
+
+/* ── HEADER ──────────────────────────────────── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  background: var(--bg);
+  box-shadow: 0 2px 8px #c8ccd0, 0 -1px 0 #fff;
+  position: relative;
+  z-index: 20;
+}
+
+.logo {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--text-dark);
+}
+.logo em {
+  font-style: normal;
+  color: var(--teal);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── NEU BUTTON ──────────────────────────────── */
+.neu-btn {
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  padding: 9px 18px;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: var(--bg);
+  color: var(--text);
+  box-shadow: var(--sh-out-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.neu-btn:hover {
+  box-shadow: 4px 4px 10px #c0c4ca, -4px -4px 10px #ffffff;
+  color: var(--text-dark);
+}
+.neu-btn:active, .neu-btn.pressed {
+  box-shadow: var(--sh-press);
+  color: var(--text-soft);
+}
+.neu-btn.primary {
+  background: var(--teal);
+  color: #fff;
+  box-shadow: 4px 4px 12px rgba(56,191,161,.4), -2px -2px 8px #fff;
+}
+.neu-btn.primary:hover { filter: brightness(1.08); }
+.neu-btn.danger {
+  color: var(--red);
+}
+.neu-btn.danger:hover { color: #c05050; }
+
+/* Status pill */
+.status-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--sh-in-sm);
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-soft);
+}
+.status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #c8ccd0;
+  transition: background var(--transition);
+}
+.status-dot.live {
+  background: var(--teal);
+  box-shadow: 0 0 6px var(--teal);
+  animation: pulse-dot 2s ease infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { box-shadow: 0 0 4px var(--teal); }
+  50%      { box-shadow: 0 0 10px var(--teal); }
+}
+
+/* ══════════════════════════════════════════════
+   MAIN GRID
+   ══════════════════════════════════════════════ */
+main {
+  display: grid;
+  grid-template-columns: 300px 1fr 260px;
+  gap: 0;
+  overflow: hidden;
+}
+
+.col {
+  padding: 24px 18px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ══════════════════════════════════════════════
+   NEU CARD
+   ══════════════════════════════════════════════ */
+.card {
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--sh-out);
+}
+.card-sm {
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  box-shadow: var(--sh-out-sm);
+  background: var(--bg);
+}
+
+.card-label {
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 14px;
+}
+
+/* ══════════════════════════════════════════════
+   STATE DISPLAY
+   ══════════════════════════════════════════════ */
+.state-display {
+  text-align: center;
+  padding: 24px 16px 20px;
+}
+
+.state-icon-wrap {
+  width: 72px; height: 72px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: var(--sh-out);
+  font-size: 1.8rem;
+  transition: box-shadow var(--transition);
+}
+.state-icon-wrap.sitting  { box-shadow: 8px 8px 18px #c0ccc8, -8px -8px 18px #fff, 0 0 0 2px var(--teal-soft); }
+.state-icon-wrap.standing { box-shadow: 8px 8px 18px #c0c8d0, -8px -8px 18px #fff, 0 0 0 2px var(--blue-soft); }
+.state-icon-wrap.away     { box-shadow: 8px 8px 18px #ccccd0, -8px -8px 18px #fff; }
+
+.state-label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  transition: color var(--transition);
+  color: var(--text-dark);
+}
+.state-sub {
+  font-size: .75rem;
+  color: var(--text-soft);
+  margin-top: 4px;
+}
+
+/* ── PROGRESS ARC ────────────────────────────── */
+.arc-wrap {
+  position: relative;
+  width: 100px; height: 52px;
+  margin: 16px auto 8px;
+  overflow: hidden;
+}
+.arc-bg, .arc-fill {
+  position: absolute;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  top: 0; left: 0;
+}
+.arc-bg {
+  box-shadow: var(--sh-in);
+}
+.arc-fill {
+  clip-path: inset(50% 0 0 0);   /* bottom half only */
+  background: conic-gradient(var(--teal) var(--pct,0deg), transparent 0);
+  transition: --pct .6s ease;
+  display: none;   /* svg approach below */
+}
+.arc-svg {
+  display: block;
+  margin: 12px auto 0;
+}
+
+/* ══════════════════════════════════════════════
+   METRIC ROW
+   ══════════════════════════════════════════════ */
+.metric-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(200,204,208,.5);
+}
+.metric-row:last-child { border-bottom: none; }
+.metric-key {
+  font-size: .75rem;
+  color: var(--text-soft);
+}
+.metric-val {
+  font-family: var(--mono);
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+.metric-val.good   { color: var(--teal); }
+.metric-val.warn   { color: var(--orange); }
+.metric-val.danger { color: var(--red); }
+.metric-val.info   { color: var(--blue); }
+
+/* ══════════════════════════════════════════════
+   PROGRESS BAR (inset track)
+   ══════════════════════════════════════════════ */
+.neu-track {
+  height: 8px;
+  border-radius: 4px;
+  box-shadow: var(--sh-in-sm);
+  background: var(--bg);
+  overflow: hidden;
+  margin-top: 10px;
+}
+.neu-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--teal), #5dd3bb);
+  transition: width .6s ease;
+  position: relative;
+}
+.neu-fill::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 1px; bottom: 1px; width: 3px;
+  background: rgba(255,255,255,.7);
+  border-radius: 2px;
+  filter: blur(1px);
+}
+.neu-fill.warn  { background: linear-gradient(90deg, var(--orange), #f5c080); }
+.neu-fill.danger{ background: linear-gradient(90deg, var(--red),    #ee9090); }
+
+/* ══════════════════════════════════════════════
+   CAMERA
+   ══════════════════════════════════════════════ */
+.cam-card {
+  flex: 1;
+  background: var(--bg);
+  border-radius: var(--radius);
+  box-shadow: var(--sh-out);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+}
+
+/* inset corner brackets */
+.cam-card::before, .cam-card::after {
+  content: '';
+  position: absolute;
+  width: 22px; height: 22px;
+  border-color: var(--teal);
+  border-style: solid;
+  opacity: .4;
+  z-index: 3;
+  transition: opacity .3s;
+}
+.cam-card::before { top: 12px; left: 12px; border-width: 2px 0 0 2px; border-radius: 4px 0 0 0; }
+.cam-card::after  { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; border-radius: 0 0 4px 0; }
+.cam-card:hover::before, .cam-card:hover::after { opacity: .8; }
+
+#camFeed {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: none;
+  border-radius: var(--radius);
+}
+.cam-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  color: var(--text-soft);
+}
+.cam-icon {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  box-shadow: var(--sh-out);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  color: var(--text-soft);
+}
+.cam-placeholder p {
+  font-size: .78rem;
+  color: var(--text-soft);
+}
+
+/* ══════════════════════════════════════════════
+   WARNINGS
+   ══════════════════════════════════════════════ */
+.warning-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  font-size: .75rem;
+  line-height: 1.5;
+  animation: slideUp .3s ease;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+.warning-item.high {
+  background: var(--red-soft);
+  box-shadow: inset 3px 0 0 var(--red);
+  color: #a04040;
+}
+.warning-item.medium {
+  background: var(--orange-soft);
+  box-shadow: inset 3px 0 0 var(--orange);
+  color: #906030;
+}
+.warning-item.low {
+  background: var(--blue-soft);
+  box-shadow: inset 3px 0 0 var(--blue);
+  color: #405080;
+}
+.warn-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+.no-warn {
+  text-align: center;
+  padding: 12px;
+  font-size: .75rem;
+  color: var(--text-soft);
+}
+.no-warn span { color: var(--teal); }
+
+/* ══════════════════════════════════════════════
+   POSTURE ISSUES TAGS
+   ══════════════════════════════════════════════ */
+.issue-wrap { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.issue-tag {
+  font-size: .65rem;
+  font-family: var(--mono);
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--bg);
+  box-shadow: var(--sh-out-sm);
+  color: var(--red);
+}
+
+/* ══════════════════════════════════════════════
+   NEU TOGGLE (start/stop)
+   ══════════════════════════════════════════════ */
+.toggle-track {
+  width: 52px; height: 28px;
+  border-radius: 14px;
+  box-shadow: var(--sh-in);
+  background: var(--bg);
+  position: relative;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.toggle-thumb {
+  position: absolute;
+  top: 4px; left: 4px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--bg);
+  box-shadow: 2px 2px 5px #c0c4ca, -1px -1px 3px #fff;
+  transition: all var(--transition);
+}
+.toggle-track.on .toggle-thumb {
+  left: 28px;
+  box-shadow: 2px 2px 5px rgba(56,191,161,.5), -1px -1px 3px #fff;
+  background: var(--teal);
+}
+
+/* ══════════════════════════════════════════════
+   ACTIVITY LOG
+   ══════════════════════════════════════════════ */
+.log-wrap {
+  max-height: 180px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.log-entry {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 8px;
+  font-size: .68rem;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(200,204,208,.4);
+  line-height: 1.4;
+}
+.log-entry:last-child { border-bottom: none; }
+.log-time { font-family: var(--mono); color: var(--teal); }
+.log-text { color: var(--text-soft); }
+
+/* ══════════════════════════════════════════════
+   NEU SCORE CIRCLE
+   ══════════════════════════════════════════════ */
+.score-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.score-circle {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  box-shadow: var(--sh-out);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.score-num {
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--teal);
+}
+.score-num.warn   { color: var(--orange); }
+.score-num.danger { color: var(--red); }
+.score-info { flex: 1; }
+.score-title {
+  font-size: .8rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+.score-sub {
+  font-size: .7rem;
+  color: var(--text-soft);
+  margin-top: 2px;
+}
+
+/* ══════════════════════════════════════════════
+   BLINK EYE ANIMATION
+   ══════════════════════════════════════════════ */
+.eye-icon {
+  display: inline-block;
+  animation: blink-anim 3s ease infinite;
+}
+@keyframes blink-anim {
+  0%,94%,100% { transform: scaleY(1); }
+  96%          { transform: scaleY(.1); }
+}
+
+/* ══════════════════════════════════════════════
+   CALIB BADGE
+   ══════════════════════════════════════════════ */
+.calib-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .65rem;
+  font-family: var(--mono);
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--bg);
+  box-shadow: var(--sh-in-sm);
+  color: var(--text-soft);
+  margin-top: 6px;
+}
+.calib-badge.done { color: var(--teal); }
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  main { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .col { padding: 14px 12px; }
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<!-- ═══ HEADER ═══════════════════════════════════════ -->
+<header>
+  <div class="logo"><em>Eye</em>Guard <span style="font-size:.65rem;color:var(--text-soft);font-weight:400">WEB v3</span></div>
+
+  <div class="header-right">
+
+    <!-- Status pill -->
+    <div class="status-pill">
+      <div class="status-dot" id="statusDot"></div>
+      <span id="connLabel">OFFLINE</span>
+    </div>
+
+    <!-- Toggle start/stop -->
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="font-size:.72rem;color:var(--text-soft)" id="toggleLabel">Tắt</span>
+      <div class="toggle-track" id="mainToggle" onclick="toggleTracking()">
+        <div class="toggle-thumb"></div>
+      </div>
+    </div>
+
+    <button class="neu-btn" onclick="takeBreak()">☕ Nghỉ</button>
+    <button class="neu-btn" onclick="resetSession()">↺ Reset</button>
+  </div>
+</header>
+
+<!-- ═══ MAIN ══════════════════════════════════════════ -->
+<main>
+
+  <!-- ── LEFT ──────────────────────────────────────── -->
+  <div class="col">
+
+    <!-- State card -->
+    <div class="card state-display">
+      <div class="state-icon-wrap" id="stateIconWrap">
+        <span id="stateEmoji">😶</span>
+      </div>
+      <div class="state-label" id="stateLbl">—</div>
+      <div class="state-sub"   id="stateSub">Chưa kết nối</div>
+
+      <!-- SVG arc progress -->
+      <svg class="arc-svg" width="120" height="66" viewBox="0 0 120 66">
+        <!-- track -->
+        <path d="M10,60 A50,50 0 0,1 110,60"
+              fill="none" stroke="#dde1e7"
+              stroke-width="8" stroke-linecap="round"
+              filter="url(#neu-in)"/>
+        <!-- fill -->
+        <path id="arcFill"
+              d="M10,60 A50,50 0 0,1 110,60"
+              fill="none" stroke="var(--teal)"
+              stroke-width="8" stroke-linecap="round"
+              stroke-dasharray="157" stroke-dashoffset="157"
+              style="transition:stroke-dashoffset .7s ease"/>
+        <defs>
+          <filter id="neu-in" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="2" dy="2" stdDeviation="2" flood-color="#c8ccd0"/>
+            <feDropShadow dx="-2" dy="-2" stdDeviation="2" flood-color="#ffffff"/>
+          </filter>
+        </defs>
+      </svg>
+
+      <div class="calib-badge" id="calibBadge">⏳ Đang calibrate...</div>
+    </div>
+
+    <!-- Sitting stats -->
+    <div class="card">
+      <div class="card-label">Thời gian ngồi</div>
+      <div class="metric-row">
+        <span class="metric-key">Ngồi liên tục</span>
+        <span class="metric-val" id="sitDur">—</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">Mục tiêu</span>
+        <span class="metric-val info" id="sitGoal">— phút</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">Nợ nghỉ</span>
+        <span class="metric-val warn" id="breakDebt">—</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">Confidence</span>
+        <span class="metric-val" id="confidence">—</span>
+      </div>
+      <div class="neu-track" style="margin-top:14px">
+        <div class="neu-fill" id="sitBar" style="width:0%"></div>
+      </div>
+    </div>
+
+    <!-- Eyes -->
+    <div class="card">
+      <div class="card-label"><span class="eye-icon">👁</span> Mắt</div>
+      <div class="metric-row">
+        <span class="metric-key">Tổng nháy</span>
+        <span class="metric-val good" id="totalBlinks">—</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">Tỷ lệ (l/ph)</span>
+        <span class="metric-val" id="blinkRate">—</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">EAR</span>
+        <span class="metric-val" id="ear">—</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">Khuôn mặt</span>
+        <span class="metric-val" id="faceStatus">—</span>
+      </div>
+    </div>
+
+    <!-- Session -->
+    <div class="card">
+      <div class="card-label">Phiên làm việc</div>
+      <div class="metric-row">
+        <span class="metric-key">Thời gian</span>
+        <span class="metric-val" id="sessionMin">—</span>
+      </div>
+      <div class="metric-row">
+        <span class="metric-key">Số lần nghỉ</span>
+        <span class="metric-val good" id="breakCount">—</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── CENTER ─────────────────────────────────────── -->
+  <div class="col">
+
+    <!-- Camera -->
+    <div class="cam-card" id="camWrap">
+      <div class="cam-placeholder" id="camPlaceholder">
+        <div class="cam-icon">📷</div>
+        <p>Bật toggle để mở camera</p>
+      </div>
+      <img id="camFeed" alt="Camera"/>
+    </div>
+
+    <!-- Warnings -->
+    <div class="card">
+      <div class="card-label">⚠ Cảnh báo</div>
+      <div id="warnArea">
+        <div class="no-warn"><span>✓</span> Không có cảnh báo</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ── RIGHT ──────────────────────────────────────── -->
+  <div class="col">
+
+    <!-- Posture score -->
+    <div class="card">
+      <div class="card-label">Tư thế</div>
+      <div class="score-wrap">
+        <div class="score-circle">
+          <span class="score-num good" id="postureScore">—</span>
+        </div>
+        <div class="score-info">
+          <div class="score-title" id="bodyStatus">Chưa có dữ liệu</div>
+          <div class="score-sub">Điểm tư thế / 100</div>
+        </div>
+      </div>
+      <div class="issue-wrap" id="issueTags"></div>
+    </div>
+
+    <!-- Controls -->
+    <div class="card">
+      <div class="card-label">Điều khiển</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <button class="neu-btn" style="width:100%;padding:11px;text-align:left" onclick="takeBreak()">
+          ☕ &nbsp;Đánh dấu nghỉ giải lao
+        </button>
+        <button class="neu-btn" style="width:100%;padding:11px;text-align:left" onclick="resetSession()">
+          ↺ &nbsp;Reset phiên làm việc
+        </button>
+      </div>
+    </div>
+
+    <!-- Activity log -->
+    <div class="card" style="flex:1">
+      <div class="card-label">Activity Log</div>
+      <div class="log-wrap" id="logWrap"></div>
+    </div>
+
+  </div>
+
+</main>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   EYEGUARD WEB CLIENT — Neumorphism Edition
+   ═══════════════════════════════════════════════ */
+
+let ws      = null;
+let running = false;
+let logs    = [];
+const MAX_LOGS = 40;
+
+// ── UTILS ─────────────────────────────────────
+function fmtSec(s) {
+  if (s == null || isNaN(s)) return '—';
+  const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+  return `${m}ph ${String(sec).padStart(2,'0')}s`;
+}
+function now() {
+  const d = new Date();
+  return [d.getHours(), d.getMinutes(), d.getSeconds()]
+    .map(n => String(n).padStart(2,'0')).join(':');
+}
+function addLog(text) {
+  logs.unshift({ t: now(), text });
+  if (logs.length > MAX_LOGS) logs.pop();
+  document.getElementById('logWrap').innerHTML = logs
+    .map(l => `<div class="log-entry">
+      <span class="log-time">${l.t}</span>
+      <span class="log-text">${l.text}</span>
+    </div>`).join('');
+}
+
+// ── ONLINE/OFFLINE ────────────────────────────
+function setOnline(on) {
+  document.getElementById('statusDot').classList.toggle('live', on);
+  document.getElementById('connLabel').textContent = on ? 'LIVE' : 'OFFLINE';
+}
+
+// ── UPDATE ARC ────────────────────────────────
+function setArc(pct) {
+  const total = 157; // arc length approx
+  const offset = total - (pct / 100) * total;
+  const fill = document.getElementById('arcFill');
+  fill.setAttribute('stroke-dashoffset', offset);
+  fill.setAttribute('stroke',
+    pct > 85 ? 'var(--red)' : pct > 60 ? 'var(--orange)' : 'var(--teal)'
+  );
+}
+
+// ── UPDATE UI ─────────────────────────────────
+function updateUI(d) {
+  // ── State ──
+  const icons  = { sitting:'🪑', standing:'🧍', away:'🌙', unknown:'😶' };
+  const labels = { sitting:'ĐANG NGỒI', standing:'ĐANG ĐỨNG', away:'KHÔNG CÓ MẶT', unknown:'NHẬN DIỆN...' };
+  const clsMap = { sitting:'sitting', standing:'standing', away:'away', unknown:'' };
+
+  const wrap = document.getElementById('stateIconWrap');
+  wrap.className = 'state-icon-wrap ' + (clsMap[d.state] || '');
+  document.getElementById('stateEmoji').textContent = icons[d.state] || '😶';
+  document.getElementById('stateLbl').textContent   = labels[d.state] || d.state || '—';
+  document.getElementById('stateLbl').style.color   = d.state_color || 'var(--text-dark)';
+  document.getElementById('stateSub').textContent   = d.face_detected ? '✓ Phát hiện khuôn mặt' : 'Không thấy khuôn mặt';
+
+  // Arc
+  const pct = Math.round((d.sitting_progress || 0) * 100);
+  setArc(pct);
+
+  // Calib
+  const cb = document.getElementById('calibBadge');
+  if (d.calibrated) {
+    cb.textContent = '✓ Đã calibrate';
+    cb.className = 'calib-badge done';
+  } else {
+    const p = d.calib_progress || 0;
+    cb.textContent = `⏳ Calibrate ${p}/50`;
+    cb.className = 'calib-badge';
+  }
+
+  // ── Sitting stats ──
+  document.getElementById('sitDur').textContent    = fmtSec(d.sitting_duration);
+  document.getElementById('sitGoal').textContent   = (d.sitting_goal_min || 45) + ' phút';
+  document.getElementById('breakDebt').textContent = fmtSec(d.break_debt_sec);
+
+  const conf = typeof d.confidence === 'number' ? (d.confidence * 100).toFixed(0) + '%' : '—';
+  document.getElementById('confidence').textContent = conf;
+
+  const bar = document.getElementById('sitBar');
+  bar.style.width = pct + '%';
+  bar.className = 'neu-fill' + (pct > 85 ? ' danger' : pct > 60 ? ' warn' : '');
+
+  // ── Eyes ──
+  document.getElementById('totalBlinks').textContent = d.total_blinks ?? '—';
+  document.getElementById('blinkRate').textContent   = typeof d.blink_rate === 'number' ? d.blink_rate.toFixed(1) : '—';
+  document.getElementById('ear').textContent         = typeof d.ear === 'number' ? d.ear.toFixed(3) : '—';
+  const fs = document.getElementById('faceStatus');
+  fs.textContent  = d.face_detected ? '✓ Có mặt' : '✗ Không';
+  fs.className    = 'metric-val ' + (d.face_detected ? 'good' : 'danger');
+
+  // ── Session ──
+  document.getElementById('sessionMin').textContent = typeof d.session_minutes === 'number' ? d.session_minutes + ' phút' : '—';
+  document.getElementById('breakCount').textContent = d.break_count ?? '—';
+
+  // ── Posture ──
+  const score = d.posture_score ?? 100;
+  const sEl = document.getElementById('postureScore');
+  sEl.textContent = score;
+  sEl.className   = 'score-num ' + (score > 80 ? 'good' : score > 60 ? 'warn' : 'danger');
+
+  const bs = document.getElementById('bodyStatus');
+  bs.textContent = d.body_bad ? '⚠ Tư thế cần chỉnh' : '✓ Tư thế tốt';
+  bs.style.color = d.body_bad ? 'var(--red)' : 'var(--teal)';
+
+  const itw = document.getElementById('issueTags');
+  if (d.posture_issues && d.posture_issues.length) {
+    itw.innerHTML = d.posture_issues.map(i => `<span class="issue-tag">${i}</span>`).join('');
+  } else {
+    itw.innerHTML = '<span style="font-size:.68rem;color:var(--text-soft)">Không có vấn đề</span>';
+  }
+
+  // ── Warnings ──
+  const warnIcons = { high:'🔴', medium:'🟠', low:'🔵' };
+  const wa = document.getElementById('warnArea');
+  if (d.warnings && d.warnings.length) {
+    wa.innerHTML = d.warnings.map(w =>
+      `<div class="warning-item ${w.severity}">
+        <span class="warn-icon">${warnIcons[w.severity]||'⚠'}</span>
+        <span>${w.text}</span>
+      </div>`
+    ).join('');
+  } else {
+    wa.innerHTML = '<div class="no-warn"><span>✓</span> Không có cảnh báo</div>';
+  }
+
+  // ── Camera ──
+  if (d.img) {
+    const feed = document.getElementById('camFeed');
+    const ph   = document.getElementById('camPlaceholder');
+    feed.src = 'data:image/jpeg;base64,' + d.img;
+    feed.style.display = 'block';
+    ph.style.display   = 'none';
+  }
+}
+
+// ── WEBSOCKET ──────────────────────────────────
+function connectWS() {
+  const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+  ws = new WebSocket(`${proto}://${location.host}/ws`);
+
+  ws.onopen = () => {
+    setOnline(true);
+    addLog('WebSocket kết nối thành công');
+  };
+  ws.onmessage = evt => {
+    try {
+      const d = JSON.parse(evt.data);
+      if (d.type === 'frame') updateUI(d);
+    } catch(e) {}
+  };
+  ws.onclose = () => {
+    setOnline(false);
+    addLog('WebSocket ngắt — thử lại sau 3s...');
+    setTimeout(connectWS, 3000);
+  };
+  ws.onerror = () => addLog('WebSocket lỗi');
+}
+
+// ── API ────────────────────────────────────────
+async function api(path, method = 'POST') {
+  try {
+    const r = await fetch('/api' + path, { method });
+    return r.json();
+  } catch(e) {
+    addLog('API lỗi: ' + path);
+    return null;
+  }
+}
+
+// ── TOGGLE ─────────────────────────────────────
+async function toggleTracking() {
+  const toggle = document.getElementById('mainToggle');
+  const label  = document.getElementById('toggleLabel');
+
+  if (!running) {
+    const res = await api('/start');
+    if (res) {
+      running = true;
+      toggle.classList.add('on');
+      label.textContent = 'Bật';
+      addLog('▶ Bắt đầu tracking...');
+    }
+  } else {
+    await api('/stop');
+    running = false;
+    toggle.classList.remove('on');
+    label.textContent = 'Tắt';
+    addLog('■ Dừng tracking.');
+    document.getElementById('camFeed').style.display = 'none';
+    document.getElementById('camPlaceholder').style.display = 'flex';
+  }
+}
+
+async function takeBreak() {
+  const res = await api('/break');
+  if (res) addLog('☕ Ghi nhận nghỉ giải lao');
+  document.getElementById('mainToggle').classList.add('pressed');
+  setTimeout(() => document.getElementById('mainToggle').classList.remove('pressed'), 200);
+}
+
+async function resetSession() {
+  await api('/reset');
+  addLog('↺ Reset phiên làm việc');
+}
+
+// ── INIT ───────────────────────────────────────
+window.addEventListener('load', () => {
+  connectWS();
+  addLog('EyeGuard Web Dashboard sẵn sàng');
+});
+</script>
+</body>
+</html>

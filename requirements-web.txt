@@ -1,0 +1,15 @@
+# EyeGuard Web - Requirements
+# Cài đặt: pip install -r requirements-web.txt
+
+# Web framework
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9
+
+# Đã có sẵn (giữ nguyên từ bản desktop)
+opencv-python>=4.8.0
+mediapipe>=0.10.0
+Pillow>=10.0.0
+
+# Nếu chưa có
+pydantic>=2.0.0

@@ -1,0 +1,144 @@
+2026-05-14 20:50:32,301 [INFO] 🚀 EyeGuard đang khởi động...
+2026-05-14 20:50:34,113 [ERROR] ❌ Lỗi khởi tạo MediaPipe: module 'mediapipe' has no attribute 'solutions'
+2026-05-14 20:52:27,580 [INFO] 🚀 EyeGuard đang khởi động...
+2026-05-14 20:52:30,504 [INFO] ✅ MediaPipe Face Mesh đã khởi động
+2026-05-14 20:52:30,656 [ERROR] ❌ Không thể mở camera 0
+2026-05-14 20:52:58,496 [INFO] 🚀 EyeGuard đang khởi động...
+2026-05-14 20:52:59,093 [INFO] ✅ MediaPipe Face Mesh đã khởi động
+2026-05-14 20:53:10,122 [INFO] ✅ Camera 0 đã mở thành công
+2026-05-14 20:53:10,122 [INFO] ✅ EyeGuard đang chạy. Nhấn 'q' để thoát, 's' để xem stats
+2026-05-14 20:59:54,022 [INFO] 👋 Đang thoát...
+2026-05-14 20:59:54,327 [INFO] ✅ EyeGuard đã tắt
+2026-05-17 21:49:34,830 [INFO] 🚀 EyeGuard đang khởi động...
+2026-05-17 21:49:35,718 [INFO] ✅ MediaPipe Face Mesh đã khởi động
+2026-05-17 21:49:48,072 [INFO] ✅ Camera 0 đã mở thành công
+2026-05-17 21:49:48,074 [INFO] ✅ EyeGuard đang chạy. Nhấn 'q' để thoát, 's' để xem stats
+2026-05-17 21:50:13,879 [INFO] 👋 Đang thoát...
+2026-05-17 21:50:14,186 [INFO] ✅ EyeGuard đã tắt
+2026-05-17 22:11:51,798 [INFO] EyeGuard v2 dang khoi dong...
+2026-05-17 22:11:55,016 [INFO] MediaPipe da khoi dong
+2026-05-17 22:12:07,176 [INFO] Camera 0 mo thanh cong
+2026-05-17 22:12:07,176 [INFO] [Q]=Thoat | [S]=Stats | [R]=Reset | [C]=Settings
+2026-05-17 22:14:39,710 [INFO] EyeGuard v2 dang khoi dong...
+2026-05-17 22:14:40,286 [INFO] MediaPipe da khoi dong
+2026-05-17 22:14:52,279 [INFO] Camera 0 mo thanh cong
+2026-05-17 22:14:52,280 [INFO] [Q]=Thoat | [S]=Stats | [R]=Reset | [C]=Settings
+2026-05-17 22:15:13,843 [INFO] Cap nhat cai dat...
+2026-05-19 01:34:57,654 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 01:34:58,716 [INFO] MediaPipe da khoi dong
+2026-05-19 01:35:13,003 [INFO] Camera 0 mo thanh cong
+2026-05-19 01:38:02,577 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 01:38:03,158 [INFO] MediaPipe da khoi dong
+2026-05-19 01:38:16,241 [INFO] Camera 0 mo thanh cong
+2026-05-19 01:38:39,368 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 01:38:40,007 [INFO] MediaPipe da khoi dong
+2026-05-19 01:38:54,088 [INFO] Camera 0 mo thanh cong
+2026-05-19 01:41:01,988 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 01:41:02,753 [INFO] MediaPipe da khoi dong
+2026-05-19 01:41:17,527 [INFO] Camera 0 mo thanh cong
+2026-05-19 01:44:38,612 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 01:44:39,307 [INFO] MediaPipe da khoi dong
+2026-05-19 01:44:53,107 [INFO] Camera 0 mo thanh cong
+2026-05-19 01:47:18,752 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 01:47:19,368 [INFO] MediaPipe da khoi dong
+2026-05-19 01:47:33,059 [INFO] Camera 0 mo thanh cong
+2026-05-19 01:47:33,333 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-19 01:48:13,268 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 01:48:13,907 [INFO] MediaPipe da khoi dong
+2026-05-19 01:48:28,435 [INFO] Camera 0 mo thanh cong
+2026-05-19 01:48:28,684 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-19 01:52:17,686 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 01:52:18,323 [INFO] MediaPipe da khoi dong
+2026-05-19 01:52:32,080 [INFO] Camera 0 mo thanh cong
+2026-05-19 01:52:32,316 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-19 01:55:07,038 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 01:55:07,629 [INFO] MediaPipe da khoi dong
+2026-05-19 01:55:21,487 [INFO] Camera 0 mo thanh cong
+2026-05-19 01:55:21,737 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-19 01:57:30,052 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 01:57:30,698 [INFO] MediaPipe da khoi dong
+2026-05-19 01:57:44,777 [INFO] Camera 0 mo thanh cong
+2026-05-19 01:57:44,994 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-19 01:59:20,618 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 01:59:21,301 [INFO] MediaPipe da khoi dong
+2026-05-19 01:59:35,922 [INFO] Camera 0 mo thanh cong
+2026-05-19 01:59:36,172 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-19 11:16:13,007 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 11:16:14,130 [INFO] MediaPipe da khoi dong
+2026-05-19 11:16:29,258 [INFO] Camera 0 mo thanh cong
+2026-05-19 11:16:29,630 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-19 11:24:31,768 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 11:24:32,375 [INFO] MediaPipe da khoi dong
+2026-05-19 11:24:46,694 [INFO] Camera 0 mo thanh cong
+2026-05-19 11:24:46,924 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-19 11:27:52,697 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 11:27:53,567 [INFO] MediaPipe da khoi dong
+2026-05-19 11:28:10,455 [INFO] Camera 0 mo thanh cong
+2026-05-19 11:28:10,750 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-19 12:30:22,411 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 12:30:23,201 [INFO] MediaPipe da khoi dong
+2026-05-19 12:30:37,300 [INFO] Camera 0 mo thanh cong
+2026-05-19 12:30:37,514 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-19 12:32:43,741 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 12:32:44,392 [INFO] MediaPipe da khoi dong
+2026-05-19 12:32:58,299 [INFO] Camera 0 mo thanh cong
+2026-05-19 12:32:58,477 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-19 14:54:34,321 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-19 14:54:35,801 [INFO] MediaPipe da khoi dong
+2026-05-19 14:54:52,281 [INFO] Camera 0 mo thanh cong
+2026-05-19 14:54:52,577 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-20 07:39:46,522 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-20 07:39:47,619 [INFO] MediaPipe da khoi dong
+2026-05-20 07:40:03,235 [INFO] Camera 0 mo thanh cong
+2026-05-20 07:40:03,524 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-20 07:48:04,215 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-20 07:48:04,825 [INFO] MediaPipe da khoi dong
+2026-05-20 07:48:18,544 [INFO] Camera 0 mo thanh cong
+2026-05-20 07:48:18,721 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-20 08:02:37,943 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-20 08:02:38,548 [INFO] MediaPipe da khoi dong
+2026-05-20 08:02:51,701 [INFO] Camera 0 mo thanh cong
+2026-05-20 08:02:51,870 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-20 08:18:45,402 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-20 08:18:45,967 [INFO] MediaPipe da khoi dong
+2026-05-20 08:18:59,096 [INFO] Camera 0 mo thanh cong
+2026-05-20 08:18:59,273 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-20 08:25:35,259 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-20 08:25:35,909 [INFO] MediaPipe da khoi dong
+2026-05-20 08:25:50,199 [INFO] Camera 0 mo thanh cong
+2026-05-20 08:25:50,402 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-20 08:25:57,461 [INFO] Cap nhat cai dat...
+2026-05-20 08:29:13,902 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-20 08:29:14,638 [INFO] MediaPipe da khoi dong
+2026-05-20 08:29:29,251 [INFO] Camera 0 mo thanh cong
+2026-05-20 08:29:29,453 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-20 08:30:53,744 [INFO] Cap nhat cai dat...
+2026-05-20 08:31:51,819 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-20 08:31:52,492 [INFO] MediaPipe da khoi dong
+2026-05-20 08:32:07,682 [INFO] Camera 0 mo thanh cong
+2026-05-20 08:32:07,877 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-20 08:43:14,300 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-20 08:43:15,018 [INFO] MediaPipe da khoi dong
+2026-05-20 08:43:29,702 [INFO] Camera 0 mo thanh cong
+2026-05-20 08:43:29,894 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-20 09:51:57,248 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-20 09:51:57,840 [INFO] MediaPipe da khoi dong
+2026-05-20 09:52:11,100 [INFO] Camera 0 mo thanh cong
+2026-05-20 09:52:11,274 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-20 10:53:30,726 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-20 10:53:31,379 [INFO] MediaPipe da khoi dong
+2026-05-20 10:53:45,626 [INFO] Camera 0 mo thanh cong
+2026-05-20 10:53:45,805 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-22 20:54:41,706 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-22 20:54:43,279 [INFO] generated new fontManager
+2026-05-22 20:59:08,737 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-22 20:59:09,591 [INFO] MediaPipe da khoi dong
+2026-05-22 20:59:09,697 [ERROR] Khong mo duoc camera 0
+2026-05-22 20:59:42,532 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-22 20:59:43,122 [INFO] MediaPipe da khoi dong
+2026-05-22 20:59:50,857 [INFO] Camera 0 mo thanh cong
+2026-05-22 20:59:51,377 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
+2026-05-22 21:07:50,451 [INFO] EyeGuard v3 dang khoi dong...
+2026-05-22 21:07:51,045 [INFO] MediaPipe da khoi dong
+2026-05-22 21:07:58,914 [INFO] Camera 0 mo thanh cong
+2026-05-22 21:07:59,081 [INFO] [F11]=Fullscreen | [Esc]=Thu nho | [B]=Nghi | [C]=Settings | [Q]=Thoat
