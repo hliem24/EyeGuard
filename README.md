@@ -41,42 +41,28 @@
   <img src="docs/project photo/1.png" alt="Dashboard tổng quan" width="800"/>
 </p>
 <p align="center">
-  <em>DASHBOARD TỔNG QUAN — Trạng thái ngồi, chỉ số mắt, tư thế realtime</em>
+  <em>ẢNH GIAO DIỆN</em>
 </p>
 
 <p align="center">
   <img src="docs/project photo/2.png" alt="Camera feed" width="700"/>
 </p>
 <p align="center">
-  <em>CAMERA FEED — Skeleton tư thế + HUD thông số trực tiếp trên frame</em>
+  <em>ẢNH GIAO DIỆN</em>
 </p>
 
 <p align="center">
   <img src="docs/project photo/3.png" alt="Cảnh báo" width="700"/>
 </p>
 <p align="center">
-  <em>CẢNH BÁO THÔNG MINH — Phân mức độ: cao / trung bình / thấp</em>
+  <em>ẢNH GIAO DIỆN</em>
 </p>
 
 <p align="center">
   <img src="docs/project photo/4.png" alt="Chỉ số mắt" width="700"/>
 </p>
 <p align="center">
-  <em>THEO DÕI MẮT — EAR, tổng nháy mắt, tỷ lệ nháy mắt mỗi phút</em>
-</p>
-
-<p align="center">
-  <img src="docs/project photo/5.png" alt="Tư thế" width="700"/>
-</p>
-<p align="center">
-  <em>PHÂN TÍCH TƯ THẾ — Điểm tư thế, neck lean, shoulder tilt</em>
-</p>
-
-<p align="center">
-  <img src="docs/project photo/6.png" alt="Activity log" width="700"/>
-</p>
-<p align="center">
-  <em>ACTIVITY LOG — Lịch sử hoạt động theo thời gian thực</em>
+  <em>ẢNH GIAO DIỆN</em>
 </p>
 
 ---
